@@ -1,8 +1,8 @@
+import structlog
 import uvicorn
 from fastapi import FastAPI
-import structlog
 
-from edgeobservability.api.telemetry import telemetry_router, exporter_router
+from edgeobservability.api.telemetry import exporter_router, telemetry_router
 
 logger = structlog.get_logger()
 

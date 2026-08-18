@@ -1,6 +1,8 @@
 import pytest
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
+
 from edgeobservability.main import app
+
 
 @pytest.mark.asyncio
 async def test_ingest_metrics_and_export() -> None:
@@ -34,7 +36,7 @@ async def test_ingest_metrics_and_export() -> None:
         
         # Check if the metrics are correctly exposed
         assert 'edge_node_cpu_usage_percent{factory_location="detroit-a",node_id="factory-cam-01"} 45.5' in metrics_text
-        assert 'edge_inference_total_total{factory_location="detroit-a",model_name="defect-detection-v2",node_id="factory-cam-01",status="success"} 1.0' in metrics_text
+        assert 'edge_inference_total_total{factory_location="detroit-a",model_name="defect-detection-v2",node_id="factory-cam-01",status="success"} 1.0' in metrics_text  # noqa: E501
 
 @pytest.mark.asyncio
 async def test_ingest_logs() -> None:

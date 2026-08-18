@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
 from typing import Any
+
+from pydantic import BaseModel, Field
+
 
 class SystemMetrics(BaseModel):
     cpu_usage_percent: float = Field(..., ge=0.0, le=100.0)

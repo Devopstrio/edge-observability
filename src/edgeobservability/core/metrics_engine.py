@@ -1,4 +1,4 @@
-from prometheus_client import CollectorRegistry, Gauge, Counter, Histogram
+from prometheus_client import CollectorRegistry, Counter, Gauge, Histogram
 
 # Central isolated registry so we don't pollute the global python runtime registry in tests
 REGISTRY = CollectorRegistry(auto_describe=True)

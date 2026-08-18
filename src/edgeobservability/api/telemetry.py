@@ -1,15 +1,15 @@
-from fastapi import APIRouter, Response
-from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
 import structlog
+from fastapi import APIRouter, Response
+from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
-from edgeobservability.models.schemas import EdgeTelemetryPayload, LogPayload
 from edgeobservability.core.metrics_engine import (
-    REGISTRY,
     EDGE_CPU_USAGE,
-    EDGE_RAM_USAGE,
     EDGE_INFERENCE_COUNT,
-    EDGE_INFERENCE_LATENCY
+    EDGE_INFERENCE_LATENCY,
+    EDGE_RAM_USAGE,
+    REGISTRY,
 )
+from edgeobservability.models.schemas import EdgeTelemetryPayload, LogPayload
 
 logger = structlog.get_logger()
 telemetry_router = APIRouter()
