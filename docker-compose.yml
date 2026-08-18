@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  edge-observability:
+    build: .
+    ports:
+      - "8002:8002"
+    environment:
+      - LOG_LEVEL=INFO
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    # Normally you'd mount a prometheus.yml that points to edge-observability:8002/metrics
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
